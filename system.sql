@@ -70,10 +70,10 @@ create table TB_Roboty (
     ID_Zawodnika number,
     ID_Konkurencji number,
     Nazwa_robota varchar2(32) not null,
-    CONSTRAINT FK_Zawodnik_Robot FOREIGN KEY (ID_Zawodnika)
-    REFERENCES TB_Zawodnicy (ID_Zawodnika),
-    CONSTRAINT FK_Konkurencja_Robot FOREIGN KEY (ID_Konkurencji)
-    REFERENCES TB_Konkurencje (ID_Konkurencji)
+    constraint FK_Zawodnik_Robot foreign key (ID_Zawodnika)
+    references TB_Zawodnicy (ID_Zawodnika),
+    constraint FK_Konkurencja_Robot foreign key (ID_Konkurencji)
+    references TB_Konkurencje (ID_Konkurencji)
 );
 
 create table TB_Stanowiska (
@@ -87,12 +87,12 @@ create table TB_Sesje (
     ID_Sedziego number,
     ID_Stanowiska number,
     Godzina_startu date not null,
-    CONSTRAINT FK_Konkurencja_Sesja FOREIGN KEY (ID_Konkurencji)
-    REFERENCES TB_Konkurencje (ID_Konkurencji),
-    CONSTRAINT FK_Sedzia_Sesja FOREIGN KEY (ID_Sedziego)
-    REFERENCES TB_Sedziowie (ID_Sedziego),
-    CONSTRAINT FK_Stanowisko_Sesja FOREIGN KEY (ID_Stanowiska)
-    REFERENCES TB_Stanowiska (ID_Stanowiska)
+    constraint FK_Konkurencja_Sesja foreign key (ID_Konkurencji)
+    references TB_Konkurencje (ID_Konkurencji),
+    constraint FK_Sedzia_Sesja foreign key (ID_Sedziego)
+    references TB_Sedziowie (ID_Sedziego),
+    constraint FK_Stanowisko_Sesja foreign key (ID_Stanowiska)
+    references TB_Stanowiska (ID_Stanowiska)
 );
 
 create table TB_Sparingi (
@@ -100,10 +100,10 @@ create table TB_Sparingi (
     ID_Robota number,
     ID_Sesji number,
     Punkty number not null,
-    CONSTRAINT FK_Robot_Sparing FOREIGN KEY (ID_Robota)
-    REFERENCES TB_Roboty (ID_Robota),
-    CONSTRAINT FK_Sesja_Sparing FOREIGN KEY (ID_Sesji)
-    REFERENCES TB_Sesje (ID_Sesji)
+    constraint FK_Robot_Sparing foreign key (ID_Robota)
+    references TB_Roboty (ID_Robota),
+    constraint FK_Sesja_Sparing foreign key (ID_Sesji)
+    references TB_Sesje (ID_Sesji)
 );
 
 create table TB_Przejazd_czasowy (
@@ -111,10 +111,10 @@ create table TB_Przejazd_czasowy (
     ID_Robota number,
     ID_Sesji number,
     Czas number not null,
-    CONSTRAINT FK_Robot_Przejazd_Czasowy FOREIGN KEY (ID_Robota)
-    REFERENCES TB_Roboty (ID_Robota),
-    CONSTRAINT FK_Sesja_Przejazd_Czasowy FOREIGN KEY (ID_Sesji)
-    REFERENCES TB_Sesje (ID_Sesji)
+    constraint FK_Robot_Przejazd_Czasowy foreign key (ID_Robota)
+    references TB_Roboty (ID_Robota),
+    constraint FK_Sesja_Przejazd_Czasowy foreign key (ID_Sesji)
+    references TB_Sesje (ID_Sesji)
 );
 
 
