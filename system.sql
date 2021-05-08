@@ -45,7 +45,7 @@ create table TB_Zawodnicy (
     Imie varchar2(32) not null,
     Nazwisko varchar2(32) not null,
     Mail varchar2(32) not null,
-    Adres varchar2(32) not null,
+    Adres varchar2(32),
     Uczelnia varchar2(32),
     Aktywny number(1) default 0 not null
 );
@@ -123,7 +123,7 @@ create table TB_Przejazd_czasowy (
 ---
 
 insert into TB_Zawodnicy
-values ( SQ_Zawodnicy.nextval ,'Gregory',  'Mzyku', 'patryk.szydlik@tlen.pl', 'Litomska Wroclaw', 'PWR', 0);
+values ( SQ_Zawodnicy.nextval ,'Gregory',  'Mzyku', 'patryk.szydlik@tlen.pl', 'Litomska Wroclaw', 'PWR', default);
 
 insert into TB_Sedziowie
 values (SQ_Sedziowie.nextval,'Grzegorz','Mzyk');
@@ -146,3 +146,30 @@ values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 0 );
 insert into TB_Przejazd_czasowy
 values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 0);
 
+---
+--- Funkcje 
+---
+
+
+--- Przyklad wywolania funkcji 
+--  DECLARE
+--     ID_Zawodnika NUMBER := 0;
+--  BEGIN
+--      ID_Zawodnika  := DODAJ_ZAWODNIKA('wiktor', 'bajor', 'ktowa@wp.pl');
+--  END;
+
+
+create or replace FUNCTION dodaj_zawodnika(
+    Imie varchar2,
+    Nazwisko varchar2,
+    Mail varchar2,
+    Adres varchar2 default null,
+    Uczelnia varchar2 default null
+) return number
+as 
+begin
+  insert into TB_Zawodnicy
+  values ( SQ_Zawodnicy.nextval ,Imie, Nazwisko, Mail, Adres, Uczelnia, 0);
+  return SQ_Zawodnicy.currval;
+end;
+/
