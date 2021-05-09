@@ -45,14 +45,13 @@ as
     punkty_p number;
 begin
     FOR rec in (select ID_Sparingu, ID_Robota, Punkty
-                into id_sparingu_p, id_robota_p, punkty_p
                 from TB_Sparingi
                 where ID_Sesji = id_sesji_p)
     loop
-        dbms_output.put_line( ' Sparing '||id_sparingu_p ||' Sesja '||
-                        id_sesji_p ||' Robot '||
-                        id_robota_p ||' Punkty '||
-                        punkty_p  ||' ' );
+        dbms_output.put_line( ' Sparing '|| rec.ID_Sparingu ||' Sesja '||
+                        id_sesji_p || ' Robot ' ||
+                        rec.ID_Robota ||' Punkty '||
+                        rec.Punkty  ||' ' );
     end loop;
 end;
 /
