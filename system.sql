@@ -63,12 +63,12 @@ call wyswietl_sesje_stanowiska(1);
 call usun_sesje(2);
 
 --- Przejazd  --------------------------
-call dodaj_przejazd(1,1,10);
+call dodaj_przejazd(1,1,97);
 call usun_przejazd(2);
-call dodaj_przejazd(1,1,10);
+call dodaj_przejazd(1,1,130);
 
 call dbms_output.put_line(' Wyswietl przejazdy : ');
-call wyswietl_przejazd_sesji(1);
+call wyswietl_przejazdy_sesji(1);
 
 --- Sparing  --------------------------
 call dodaj_sparing(1, 1, 10);

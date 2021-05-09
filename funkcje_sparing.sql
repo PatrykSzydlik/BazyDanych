@@ -40,15 +40,12 @@ create or replace procedure wyswietl_sparingi_sesji(
     id_sesji_p number
 )
 as
-    id_sparingu_p number;
-    id_robota_p number;
-    punkty_p number;
 begin
     FOR rec in (select ID_Sparingu, ID_Robota, Punkty
                 from TB_Sparingi
                 where ID_Sesji = id_sesji_p)
     loop
-        dbms_output.put_line( ' Sparing '|| rec.ID_Sparingu ||' Sesja '||
+        dbms_output.put_line( 'Sparing '|| rec.ID_Sparingu ||' Sesja '||
                         id_sesji_p || ' Robot ' ||
                         rec.ID_Robota ||' Punkty '||
                         rec.Punkty  ||' ' );
