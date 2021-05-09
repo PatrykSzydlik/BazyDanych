@@ -27,8 +27,6 @@ begin
     aktywni := ZLICZ_AKTYWNYCH_ZAWODNIKOW();
 end;
 
+ALTER SESSION 
+SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
 
-
-@'C:\Users\patry\Desktop\Semestr 6\Bazy Danych\Projekt\repo\funkcje_konkurencja.sql';
---- Konkurencja
-call dodaj_konkurencje('Linefollower', TIMESTAMP'2021-05-08 19:00:00', 'Czasowy');

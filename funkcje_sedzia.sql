@@ -33,4 +33,4 @@ begin
     delete from TB_Sedziowie
     where Imie = Imie_sedziego and Nazwisko = Nazwisko_sedziego;
 end;
-/
+/i

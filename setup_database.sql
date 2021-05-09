@@ -123,10 +123,10 @@ create table TB_Przejazd_czasowy (
 ---
 
 insert into TB_Zawodnicy
-values ( SQ_Zawodnicy.nextval ,'Gregory',  'Mzyku', 'patryk.szydlik@tlen.pl', 'Litomska Wroclaw', 'PWR', default);
+values ( SQ_Zawodnicy.nextval ,'Adam',  'Kowalski', 'ad.kowal@gmail.pl', 'Wrocław', 'PWR', default);
 
 insert into TB_Sedziowie
-values (SQ_Sedziowie.nextval,'Grzegorz','Mzyk');
+values (SQ_Sedziowie.nextval,'Artur','Kowalczyk');
 
 insert into TB_Konkurencje
 values (SQ_Konkurencje.nextval,'LineFollower', 'Czasowy', TIMESTAMP '2021-05-08 18:30:00', 0);

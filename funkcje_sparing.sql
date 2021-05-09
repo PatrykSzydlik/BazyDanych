@@ -9,8 +9,8 @@ create or replace procedure dodaj_sparing(
 )
 as 
 begin
-  insert into TB_Przejazd_czasowy
-  values (SQ_Przejazdy_czasowe.nextval, id_robota_p, id_sesji_p, czas_przejazdu_p);
+  insert into TB_Sparingi
+  values (SQ_Sparingi.nextval, id_robota_p, id_sesji_p, punkty_p);
   commit;
 end;
 /
@@ -25,21 +25,23 @@ begin
 end;
 /
 
-create or replace procedure wyswietl_przejazd_sesji(
+create or replace procedure wyswietl_sparingi_sesji(
     id_sesji_p number
 )
 as
-    id_przejazdu_p number;
+    id_sparingu_p number;
     id_robota_p number;
-    czas_przejazdu_p number;
+    punkty_p number;
 begin
-    select ID_Przejazdu, ID_Robota, Czas
-    into id_przejazdu_p, id_robota_p, czas_przejazdu_p
-    from TB_Przejazd_czasowy
-    where ID_Sesji = id_sesji_p;
-    dbms_output.put_line( ' Przejazd '||id_przejazdu_p ||' Sesja '||
+    FOR rec in (select ID_Przejazdu, ID_Robota, Punkty
+                into id_sparingu_p, id_robota_p, punkty_p
+                from TB_Sparingi
+                where ID_Sesji = id_sesji_p)
+    loop
+        dbms_output.put_line( ' Sparing '||id_sparingu_p ||' Sesja '||
                         id_sesji_p ||' Robot '||
-                        id_robota_p ||' Czas '||
-                        czas_przejazdu_p  ||' ' );
+                        id_robota_p ||' Punkty '||
+                        punkty_p  ||' ' );
+    end loop;
 end;
 /
