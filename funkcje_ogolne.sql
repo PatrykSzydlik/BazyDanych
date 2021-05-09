@@ -11,7 +11,7 @@ as
     i number;
     nazwa_r varchar2(40);
 begin
-    i := 1;
+    i := 0;
     select ID_Sesji
     into id_sesji_p
     from TB_Sesje
@@ -20,11 +20,13 @@ begin
                 from TB_Sparingi
                 where ID_sesji = id_sesji_p order by Punkty desc)
     loop
-        exit when i = ilosc_robotw;
+        
         select Nazwa_robota into nazwa_r from TB_Roboty where ID_Robota = rec.ID_Robota;
         dbms_output.put_line(rec.ID_Robota ||' ' ||
+                             nazwa_r || ' ' ||   
                              rec.Punkty ||' ');
         i := i + 1;
+        exit when i = ilosc_robotw;
     end loop;
     
 end;
@@ -51,8 +53,10 @@ begin
         exit when i = ilosc_robotw;
         select Nazwa_robota into nazwa_r from TB_Roboty where ID_Robota = rec.ID_Robota;
         dbms_output.put_line(rec.ID_Robota ||' ' ||
+                             nazwa_r || ' ' || 
                              rec.Czas ||' ');
         i := i + 1;
+        exit when i = ilosc_robotw;
     end loop;
     
 end;
