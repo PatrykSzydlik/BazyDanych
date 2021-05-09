@@ -10,6 +10,7 @@
 @'C:\Users\patry\Desktop\Semestr 6\Bazy Danych\Projekt\repo\funkcje_sesja.sql';
 @'C:\Users\patry\Desktop\Semestr 6\Bazy Danych\Projekt\repo\funkcje_przejazd_czasowy.sql';
 @'C:\Users\patry\Desktop\Semestr 6\Bazy Danych\Projekt\repo\funkcje_sparing.sql';
+@'C:\Users\patry\Desktop\Semestr 6\Bazy Danych\Projekt\repo\funkcje_ogolne.sql';
 
 ---  Zawodnik  -------------------------
 
@@ -26,8 +27,8 @@ end;
 call dodaj_konkurencje('MiniSumo', '2021-05-08 19:00:00', 'Punktowy');
 call wyswietl_konkurencje('MiniSumo');
 call wyswietl_dostepne_konkurencje();
-call zakoncz_konkurencje('LineFollower');
-call usun_konkurencje('LineFollower');
+call zakoncz_konkurencje('MiniSumo');
+call usun_konkurencje('MiniSumo');
 
 --- Robot  -----------------------------
 call dodaj_robota(1,1, 'Bodzio');
