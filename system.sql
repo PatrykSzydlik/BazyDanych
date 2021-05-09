@@ -163,9 +163,9 @@ create or replace procedure dodaj_zawodnika(
 )
 as 
 begin
-  insert into TB_Zawodnicy
-  values ( SQ_Zawodnicy.nextval ,Imie_zawodnika, Nazwisko_zawodnika, Mail_zawodnika, Adres_zawodnika, Uczelnia_zawodnika, 0);
-  commit;
+    insert into TB_Zawodnicy
+    values ( SQ_Zawodnicy.nextval ,Imie_zawodnika, Nazwisko_zawodnika, Mail_zawodnika, Adres_zawodnika, Uczelnia_zawodnika, 0)
+    commit;
 end;
 /
 
@@ -241,5 +241,22 @@ as
 begin
    select count(Aktywny) into aktywni_zawodnicy  from  TB_ZAWODNICY where Aktywny = 1;
    return aktywni_zawodnicy;
+end;
+/
+
+---
+---Robot 
+---
+
+create or replace procedure dodaj_robota(
+    id_zawodnika_p number,
+    id_konkurencji_p number,
+    nazwa varchar2
+)
+as 
+begin
+  insert into TB_Roboty
+  values (SQ_Roboty.nextval, id_zawodnika_p, id_konkurencji_p, nazwa);
+  commit;
 end;
 /
