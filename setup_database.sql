@@ -44,7 +44,7 @@ create table TB_Zawodnicy (
     ID_Zawodnika number primary key,
     Imie varchar2(32) not null,
     Nazwisko varchar2(32) not null,
-    Mail varchar2(32) not null,
+    Mail varchar2(32) not null unique,
     Adres varchar2(32),
     Uczelnia varchar2(32),
     Aktywny number(1) default 0 not null
@@ -53,13 +53,13 @@ create table TB_Zawodnicy (
 
 create table TB_Sedziowie (
     ID_Sedziego number primary key,
-    Imie varchar(32) not null,
-    Nazwisko varchar(32) not null
+    Imie varchar(32) not null unique,
+    Nazwisko varchar(32) not null unique
 );
 
 create table TB_Konkurencje (
     ID_Konkurencji number primary key,
-    Nazwa varchar2(32) not null,
+    Nazwa varchar2(32) not null unique,
     Typ_oceny varchar2(32) not null,
     Godzina_startu date not null,
     Zakonczona number(1) default 0 not null
@@ -69,7 +69,7 @@ create table TB_Roboty (
     ID_Robota number primary key,
     ID_Zawodnika number,
     ID_Konkurencji number,
-    Nazwa_robota varchar2(32) not null,
+    Nazwa_robota varchar2(32) not null unique,
     constraint FK_Zawodnik_Robot foreign key (ID_Zawodnika)
     references TB_Zawodnicy (ID_Zawodnika),
     constraint FK_Konkurencja_Robot foreign key (ID_Konkurencji)
