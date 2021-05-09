@@ -147,9 +147,61 @@ insert into TB_Przejazd_czasowy
 values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 0);
 
 ---
---- Funkcje 
+--- Procedury - nie zwracaja nic 
 ---
 
+---
+--- Wywolanie call NAZWA(param1..)
+---
+
+create or replace procedure dodaj_zawodnika(
+    Imie_zawodnika varchar2,
+    Nazwisko_zawodnika varchar2,
+    Mail_zawodnika varchar2,
+    Adres_zawodnika varchar2 default null,
+    Uczelnia_zawodnika varchar2 default null
+)
+as 
+begin
+  insert into TB_Zawodnicy
+  values ( SQ_Zawodnicy.nextval ,Imie_zawodnika, Nazwisko_zawodnika, Mail_zawodnika, Adres_zawodnika, Uczelnia_zawodnika, 0);
+  commit;
+end;
+/
+
+create or replace procedure zweryfikuj_zawodnika(
+    Imie_zawodnika varchar2,
+    Nazwisko_zawodnika varchar2,
+    Mail_zawodnika varchar2
+)
+as
+begin
+  update TB_Zawodnicy set Aktywny = 1 where Imie = Imie_zawodnika and Nazwisko = Nazwisko_zawodnika and Mail = Mail_zawodnika; 
+  commit;
+end;
+/
+
+create or replace procedure wyswietl_zawodnika(
+    Imie_zawodnika varchar2,
+    Nazwisko_zawodnika varchar2,
+    Mail_zawodnika varchar2
+)
+as
+    id out number;
+    adres out varchar2(32);
+    uczelnia out varchar2(32);
+    aktywny out number;
+begin
+    select ID_Zawodnika, Adres, Uczelnia, Aktywny  into id, adres, uczelnia, aktywny from TB_Zawodnicy where Imie = Imie_zawodnika and Nazwisko = Nazwisko_zawodnika and Mail = Mail_zawodnika; 
+    dbms_output.put_line(id || ' ' || adres || ' - ' || uczelnia);
+end;
+/
+
+
+
+---
+--- Funkcje
+---
 
 --- Przyklad wywolania funkcji 
 --  DECLARE
@@ -157,19 +209,11 @@ values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 0);
 --  BEGIN
 --      ID_Zawodnika  := DODAJ_ZAWODNIKA('wiktor', 'bajor', 'ktowa@wp.pl');
 --  END;
-
-
-create or replace FUNCTION dodaj_zawodnika(
-    Imie varchar2,
-    Nazwisko varchar2,
-    Mail varchar2,
-    Adres varchar2 default null,
-    Uczelnia varchar2 default null
-) return number
-as 
+create or replace function zlicz_aktywnych_zawodnikow return number
+as
+    aktywni_zawodnicy number;
 begin
-  insert into TB_Zawodnicy
-  values ( SQ_Zawodnicy.nextval ,Imie, Nazwisko, Mail, Adres, Uczelnia, 0);
-  return SQ_Zawodnicy.currval;
+   select count(Aktywny) into aktywni_zawodnicy  from  TB_ZAWODNICY where Aktywny = 1;
+   return aktywni_zawodnicy;
 end;
 /
