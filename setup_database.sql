@@ -128,21 +128,45 @@ values ( SQ_Zawodnicy.nextval ,'Adam',  'Kowalski', 'ad.kowal@gmail.pl', 'Wrocł
 insert into TB_Sedziowie
 values (SQ_Sedziowie.nextval,'Artur','Kowalczyk');
 
-insert into TB_Konkurencje
-values (SQ_Konkurencje.nextval,'LineFollower', 'Czasowy', TIMESTAMP '2021-05-08 18:30:00', 0);
-
-insert into TB_Roboty
-values ( SQ_Roboty.nextval, SQ_Zawodnicy.currval, SQ_Konkurencje.currval, 'MegaZord' );
-
 insert into TB_Stanowiska
 values (SQ_Stanowiska.nextval, 0);
+
+insert into TB_Konkurencje
+values (SQ_Konkurencje.nextval,'LineFollower', 'Czasowy', TIMESTAMP '2021-05-08 18:30:00', 0);
 
 insert into TB_Sesje
 values (SQ_Sesje.nextval, SQ_Konkurencje.currval, SQ_Sedziowie.currval, SQ_Stanowiska.currval, TIMESTAMP '2021-05-08 18:30:00');
 
+
+insert into TB_Roboty
+values ( SQ_Roboty.nextval, SQ_Zawodnicy.currval, SQ_Konkurencje.currval, 'MegaZord' );
 insert into TB_Sparingi
-values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 0 );
- 
+values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 50);
 insert into TB_Przejazd_czasowy
-values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 0);
+values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 65);
+
+insert into TB_Roboty
+values ( SQ_Roboty.nextval, SQ_Zawodnicy.currval, SQ_Konkurencje.currval, 'MegaZord1' );
+insert into TB_Sparingi
+values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 20 );
+insert into TB_Przejazd_czasowy
+values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 120);
+
+insert into TB_Roboty
+values ( SQ_Roboty.nextval, SQ_Zawodnicy.currval, SQ_Konkurencje.currval, 'MegaZord2' );
+insert into TB_Sparingi
+values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 10 );
+insert into TB_Przejazd_czasowy
+values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 70);
+
+insert into TB_Roboty
+values ( SQ_Roboty.nextval, SQ_Zawodnicy.currval, SQ_Konkurencje.currval, 'MegaZord3' );
+insert into TB_Sparingi
+values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 60);
+insert into TB_Przejazd_czasowy
+values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 20);
+
+
+
+
 

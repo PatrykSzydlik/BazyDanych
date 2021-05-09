@@ -64,4 +64,5 @@ call wyswietl_sparingi_sesji(1);
 call usun_sparing(2);
 
 --- Funkcje ogólne --------------------
-
+call wyswietl_ranking_punktowy(1,3);
+call wyswietl_ranking_czasowy(1,4);
