@@ -15,6 +15,17 @@ begin
 end;
 /
 
+create or replace procedure aktualizuj_punkty_sparing(
+    id_sparingu_p number,
+    punkty_p number
+)
+as
+begin
+    update TB_Sparingi set Punkty = Punkty + punkty_p where ID_Sparingu = id_sparingu_p; 
+    commit;
+end;
+/
+
 create or replace procedure usun_sparing(
     id_sparingu_p number
 )
@@ -33,7 +44,7 @@ as
     id_robota_p number;
     punkty_p number;
 begin
-    FOR rec in (select ID_Przejazdu, ID_Robota, Punkty
+    FOR rec in (select ID_Sparingu, ID_Robota, Punkty
                 into id_sparingu_p, id_robota_p, punkty_p
                 from TB_Sparingi
                 where ID_Sesji = id_sesji_p)
