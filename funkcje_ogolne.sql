@@ -50,7 +50,6 @@ begin
                 from TB_Przejazd_czasowy
                 where ID_sesji = id_sesji_p order by Czas)
     loop
-        exit when i = ilosc_robotw;
         select Nazwa_robota into nazwa_r from TB_Roboty where ID_Robota = rec.ID_Robota;
         dbms_output.put_line(rec.ID_Robota ||' ' ||
                              nazwa_r || ' ' || 
