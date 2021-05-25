@@ -6,18 +6,26 @@
 --- Wywolanie call NAZWA(param1..)
 ---
 
-create or replace procedure dodaj_zawodnika(
+create or replace function dodaj_zawodnika(
     Imie_zawodnika varchar2,
     Nazwisko_zawodnika varchar2,
     Mail_zawodnika varchar2,
     Adres_zawodnika varchar2 default null,
     Uczelnia_zawodnika varchar2 default null
-)
+)return number
 as 
 begin
   insert into TB_Zawodnicy
   values ( SQ_Zawodnicy.nextval ,Imie_zawodnika, Nazwisko_zawodnika, Mail_zawodnika, Adres_zawodnika, Uczelnia_zawodnika, 0);
   commit;
+  return (SQ_Zawodnicy.currval);
+  exception
+    when dup_val_on_index then
+        rollback;
+        raise_application_error(-20000, 'Taki zawodnik już istnieje');
+    when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /
 
@@ -37,11 +45,11 @@ end;
 ---
 --- Funkcja dziala, trzeba w sql developer wejsc w View , Dbms output i ustawic enable
 ---
-create or replace procedure wyswietl_zawodnika(
+create or replace function  wyswietl_zawodnika(
     Imie_zawodnika varchar2,
     Nazwisko_zawodnika varchar2,
     Mail_zawodnika varchar2
-)
+)return number
 as
     id number;
     adres varchar2(32);
@@ -60,6 +68,10 @@ begin
                         uczelnia ||' '|| 
                         aktywny || ' ' 
                         );
+    return id;
+    exception
+    when NO_DATA_FOUND then
+        raise_application_error(-20000, 'Nie ma takiego zawodnika');
 end;
 /
 

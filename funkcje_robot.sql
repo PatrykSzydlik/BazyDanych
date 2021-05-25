@@ -12,6 +12,13 @@ begin
   insert into TB_Roboty
   values (SQ_Roboty.nextval, id_zawodnika_p, id_konkurencji_p, nazwa);
   commit;
+  exception
+    when dup_val_on_index then
+        rollback;
+        raise_application_error(-20000, 'Taki robot już istnieje');
+    when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /
 
