@@ -29,5 +29,15 @@ as
 begin
     delete from TB_Roboty
     where Nazwa_robota = nazwa;
+    commit;
+end;
+/
+create or replace procedure awansuj_robota(
+    id_Robota_p number,
+    id_konkurencji_p number
+)
+as 
+begin
+  update TB_Roboty set ID_konkurencji = id_konkurencji_p  where ID_Robota = id_Robota_p; 
 end;
 /

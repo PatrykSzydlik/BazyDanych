@@ -33,6 +33,7 @@ as
 begin
     delete from TB_Sparingi
     where ID_Sparingu = id_sparingu_p;
+    commit;
 end;
 /
 

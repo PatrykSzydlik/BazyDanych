@@ -38,6 +38,10 @@ as
 begin
   update TB_Zawodnicy set Aktywny = 1 where Imie = Imie_zawodnika and Nazwisko = Nazwisko_zawodnika and Mail = Mail_zawodnika; 
   commit;
+  exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego zawodnika');
 end;
 /
 
@@ -86,6 +90,10 @@ begin
     delete from TB_Zawodnicy
     where Imie = Imie_zawodnika and Nazwisko = Nazwisko_zawodnika and Mail = Mail_zawodnika;
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego zawodnika');
 end;
 /
 
