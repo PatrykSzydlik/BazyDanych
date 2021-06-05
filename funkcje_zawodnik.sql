@@ -85,7 +85,6 @@ create or replace procedure usun_zawodnika(
     Mail_zawodnika varchar2
 )
 as
-
 begin
     delete from TB_Zawodnicy
     where Imie = Imie_zawodnika and Nazwisko = Nazwisko_zawodnika and Mail = Mail_zawodnika;

@@ -14,6 +14,7 @@ drop sequence SQ_Sesje;
 drop sequence SQ_Sparingi;
 drop sequence SQ_Przejazdy_czasowe;
 drop sequence SQ_Sedziowie;
+drop sequence SQ_Hasla;
 
 create sequence SQ_Zawodnicy start with 1 increment by 1;
 create sequence SQ_Roboty start with 1 increment by 1;
@@ -37,6 +38,7 @@ drop table TB_Konkurencje;
 drop table TB_Stanowiska;
 drop table TB_Sedziowie;
 drop table TB_Zawodnicy;
+drop table TB_Hasla;
 ---
 --- Tworzenie tabel
 ---
@@ -122,7 +124,8 @@ create table TB_Hasla(
     ID_Hasla number primary key,
     ID_Zawodnika number,
     ID_Sedziego number,
-    ID_Organizatora number
+    ID_Organizatora number,
+    Haslo varchar2(32) not null
 );
 
 
