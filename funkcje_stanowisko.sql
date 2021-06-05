@@ -18,6 +18,7 @@ as
 begin
     delete from TB_Stanowiska
     where ID_Stanowiska = id_stanowiska_p;
+    commit;
 end;
 /
 

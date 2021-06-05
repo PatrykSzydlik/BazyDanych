@@ -22,6 +22,7 @@ as
 begin
     delete from TB_Przejazd_czasowy
     where ID_Przejazdu = id_przejazdu_p;
+    commit;
 end;
 /
 
