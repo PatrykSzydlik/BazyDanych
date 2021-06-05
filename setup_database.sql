@@ -23,6 +23,7 @@ create sequence SQ_Sesje start with 1 increment by 1;
 create sequence SQ_Sparingi start with 1 increment by 1;
 create sequence SQ_Przejazdy_czasowe start with 1 increment by 1;
 create sequence SQ_Sedziowie start with 1 increment by 1;
+create sequence SQ_Hasla start with 1 increment by 1;
 
 ---
 --- Czyszczenie tabel
@@ -117,6 +118,13 @@ create table TB_Przejazd_czasowy (
     references TB_Sesje (ID_Sesji)
 );
 
+create table TB_Hasla(
+    ID_Hasla number primary key,
+    ID_Zawodnika number,
+    ID_Sedziego number,
+    ID_Organizatora number
+);
+
 
 ---
 --- Wypelnianie tabeli
@@ -124,6 +132,9 @@ create table TB_Przejazd_czasowy (
 
 insert into TB_Zawodnicy
 values ( SQ_Zawodnicy.nextval ,'Adam',  'Kowalski', 'ad.kowal@gmail.pl', 'Wrocław', 'PWR', default);
+
+insert into TB_Hasla
+values ( SQ_Hasla.nextval , SQ_Zawodnicy.currval,null,null,'123');
 
 insert into TB_Sedziowie
 values (SQ_Sedziowie.nextval,'Artur','Kowalczyk');
