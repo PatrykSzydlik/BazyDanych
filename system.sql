@@ -18,7 +18,7 @@ declare
  id number;
 begin
     ---  Zawodnik  -------------------------
-    id := dodaj_zawodnika('Wiktor','Bajor', 'wiktor@wiktor.pl');
+    id := dodaj_zawodnika('Wiktor','Bajor', 'wiktor@wiktor.pl','1656');
     zweryfikuj_zawodnika('Wiktor','Bajor', 'wiktor@wiktor.pl');
     dbms_output.put_line(' Wyswietl zawodnika : ');
     id := wyswietl_zawodnika('Wiktor','Bajor', 'wiktor@wiktor.pl');  

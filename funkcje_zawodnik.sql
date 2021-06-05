@@ -10,6 +10,7 @@ create or replace function dodaj_zawodnika(
     Imie_zawodnika varchar2,
     Nazwisko_zawodnika varchar2,
     Mail_zawodnika varchar2,
+    Haslo varchar2,
     Adres_zawodnika varchar2 default null,
     Uczelnia_zawodnika varchar2 default null
 )return number
@@ -18,6 +19,7 @@ begin
   insert into TB_Zawodnicy
   values ( SQ_Zawodnicy.nextval ,Imie_zawodnika, Nazwisko_zawodnika, Mail_zawodnika, Adres_zawodnika, Uczelnia_zawodnika, 0);
   commit;
+  dodaj_haslo(SQ_Zawodnicy.currval,null,null,Haslo);
   return (SQ_Zawodnicy.currval);
   exception
     when dup_val_on_index then
@@ -115,3 +117,4 @@ begin
    return aktywni_zawodnicy;
 end;
 /
+
