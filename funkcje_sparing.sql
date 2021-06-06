@@ -28,6 +28,9 @@ create or replace procedure aktualizuj_punkty_sparing(
 )
 as
 begin
+    if punkty_p is null then
+        raise_application_error(-20000, 'Nie mozna dodac pustego rekordu');
+    end if;
     update TB_Sparingi set Punkty = Punkty + punkty_p where ID_Sparingu = id_sparingu_p; 
     commit;
     exception

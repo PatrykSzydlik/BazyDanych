@@ -9,6 +9,9 @@ create or replace procedure dodaj_przejazd(
 )
 as 
 begin
+  if czas_przejazdu_p is null then
+    raise_application_error(-20000, 'Nie mozna dodac pustego rekordu');
+  end if;
   insert into TB_Przejazd_czasowy
   values (SQ_Przejazdy_czasowe.nextval, id_robota_p, id_sesji_p, czas_przejazdu_p);
   commit;
