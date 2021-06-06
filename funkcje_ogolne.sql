@@ -61,18 +61,18 @@ begin
 end;
 /
 
-create or replace function  user_aut  
- p_username IN VARCHAR2, --User_Name
- p_password IN VARCHAR2 -- Password    
+create or replace function  user_aut  (
+ p_username IN VARCHAR2,
+ p_password IN VARCHAR2
 )
  RETURN BOOLEAN
 AS
- lc_pwd_exit VARCHAR2 (1);
+ pwd VARCHAR2 (32);
 BEGIN
- -- Validate whether the user exits or not
- SELECT *
+ SELECT HASLO
+ into  pwd 
  FROM TB_Hasla
- WHERE ID_Zawodnika = p_username AND LOG_PAS = p_password;
+ WHERE ID_Zawodnika = p_username AND HASLO = p_password;
 RETURN TRUE;
 EXCEPTION
  WHEN NO_DATA_FOUND
