@@ -80,6 +80,9 @@ begin
      wyswietl_ranking_punktowy(1,3);
      dbms_output.put_line(' Ranking czasowy : ');
      wyswietl_ranking_czasowy(1,2);
+
+
+
 end;
 
 

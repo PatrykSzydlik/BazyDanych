@@ -53,10 +53,10 @@ begin
                 from TB_Przejazd_czasowy
                 where ID_Sesji = id_sesji_p)
     loop
-        dbms_output.put_line( 'Przejazd '||id_przejazdu_p ||' Sesja '||
-                            id_sesji_p ||' Robot '||
-                            id_robota_p ||' Czas '||
-                            czas_p  ||' ' );
+        dbms_output.put_line( 'Sparing '|| rec.ID_Przejazdu ||' Sesja '||
+                        id_sesji_p || ' Robot ' ||
+                        rec.ID_Robota ||' Punkty '||
+                        rec.Czas  ||' ' );
     end loop;
 end;
 /
