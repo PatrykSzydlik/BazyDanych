@@ -61,8 +61,7 @@ begin
 end;
 /
 
-create or replace function  user_aut  (
-    
+create or replace function  user_aut  
  p_username IN VARCHAR2, --User_Name
  p_password IN VARCHAR2 -- Password    
 )
@@ -73,8 +72,7 @@ BEGIN
  -- Validate whether the user exits or not
  SELECT *
  FROM TB_Hasla
- WHERE ID_Zawodnika = p_username AND LOG_PAS = p_password and status='Y' 
-;
+ WHERE ID_Zawodnika = p_username AND LOG_PAS = p_password;
 RETURN TRUE;
 EXCEPTION
  WHEN NO_DATA_FOUND
