@@ -8,6 +8,13 @@ begin
     insert into TB_Konkurencje
     values (SQ_Konkurencje.nextval,nazwa,tryb_oceny, TO_DATE(godzina), 0);
     commit;
+     exception
+    when dup_val_on_index then
+        rollback;
+        raise_application_error(-20000, 'Taka konkurencja juz istnieje');
+    when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /
 
@@ -34,6 +41,10 @@ begin
   delete from TB_Konkurencje
     where Nazwa = nazwa_p;
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiej konkurencji');
 end;
 /
 
@@ -44,6 +55,10 @@ as
 begin
     update TB_Konkurencje set Zakonczona = -1 where Nazwa = nazwa_p;
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiej konkurencji');
 end;
 /
 

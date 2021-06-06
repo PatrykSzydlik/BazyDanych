@@ -81,7 +81,7 @@ EXCEPTION
  THEN
  RETURN FALSE;
 END  login_zawodnika;
-
+/
 create or replace function  login_sedziego(
  p_username IN VARCHAR2,
  p_password IN VARCHAR2
@@ -102,3 +102,4 @@ EXCEPTION
  THEN
  RETURN FALSE;
 END login_sedziego;
+/

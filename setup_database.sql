@@ -141,6 +141,10 @@ values ( SQ_Hasla.nextval , SQ_Zawodnicy.currval,null,'123');
 insert into TB_Sedziowie
 values (SQ_Sedziowie.nextval,'Artur','Kowalczyk');
 
+
+insert into TB_Hasla
+values ( SQ_Hasla.nextval , null,SQ_Sedziowie.currval,'KochamRoboty');
+
 insert into TB_Stanowiska
 values (SQ_Stanowiska.nextval, 0);
 
@@ -178,8 +182,7 @@ insert into TB_Sparingi
 values (SQ_Sparingi.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 60);
 insert into TB_Przejazd_czasowy
 values (SQ_Przejazdy_czasowe.nextval, SQ_Roboty.currval, SQ_Sesje.currval, 20);
-
-
+commit;
 
 
 

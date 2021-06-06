@@ -44,10 +44,10 @@ begin
      usun_stanowisko(2);
 
     --- Sedzia  ----------------------------
-     dodaj_sedziego('Patryk', 'Szydlik');
+     dodaj_sedziego('Patryk', 'Szydlik','458');
      usun_sedziego(2);
 
-     dodaj_sedziego('Patryk', 'Szydlik');
+     dodaj_sedziego('Patryk', 'Szydlik','daw4d6s4f8se4f');
      usun_sedziego_po_imieniu('Patryk', 'Szydlik');
 
     --- Sesja  -----------------------------

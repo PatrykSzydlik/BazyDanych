@@ -2,7 +2,6 @@
 create or replace procedure dodaj_haslo(
     ID_zawodnika number,
     ID_Sedziego number,
-    ID_Organizatora number,
     Haslo_p varchar2
 )
 as 

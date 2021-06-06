@@ -12,6 +12,13 @@ begin
   insert into TB_Przejazd_czasowy
   values (SQ_Przejazdy_czasowe.nextval, id_robota_p, id_sesji_p, czas_przejazdu_p);
   commit;
+  exception
+  when dup_val_on_index then
+        rollback;
+        raise_application_error(-20000, 'Taki przejazd juz istnieje');
+    when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /
 
@@ -23,6 +30,10 @@ begin
     delete from TB_Przejazd_czasowy
     where ID_Przejazdu = id_przejazdu_p;
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego przejazdu');
 end;
 /
 

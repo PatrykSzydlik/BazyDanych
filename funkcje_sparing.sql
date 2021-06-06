@@ -12,6 +12,13 @@ begin
   insert into TB_Sparingi
   values (SQ_Sparingi.nextval, id_robota_p, id_sesji_p, punkty_p);
   commit;
+  exception
+  when dup_val_on_index then
+        rollback;
+        raise_application_error(-20000, 'Taki sparing juz istnieje');
+    when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /
 
@@ -23,6 +30,10 @@ as
 begin
     update TB_Sparingi set Punkty = Punkty + punkty_p where ID_Sparingu = id_sparingu_p; 
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego spraringu');
 end;
 /
 
@@ -34,6 +45,10 @@ begin
     delete from TB_Sparingi
     where ID_Sparingu = id_sparingu_p;
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego spraringu');
 end;
 /
 

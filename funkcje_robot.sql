@@ -30,6 +30,10 @@ begin
     delete from TB_Roboty
     where Nazwa_robota = nazwa;
     commit;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego robota');
 end;
 /
 create or replace procedure awansuj_robota(
@@ -39,5 +43,13 @@ create or replace procedure awansuj_robota(
 as 
 begin
   update TB_Roboty set ID_konkurencji = id_konkurencji_p  where ID_Robota = id_Robota_p; 
+  commit;
+  exception
+  when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego robota');
+  when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /

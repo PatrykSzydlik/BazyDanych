@@ -13,6 +13,13 @@ begin
   insert into TB_Sesje
   values (SQ_Sesje.nextval, id_konkurencji_p, id_stanowiska_p, id_sedziego_p, TO_DATE(czas_startu_p));
   commit;
+  exception
+  when dup_val_on_index then
+        rollback;
+        raise_application_error(-20000, 'Takia sesja');
+    when OTHERS then
+        rollback;
+        raise_application_error(-20000, 'Wystapil problem');
 end;
 /
 
@@ -23,6 +30,10 @@ as
 begin
     delete from TB_Sesje
     where ID_Sesji = id_sesji_p;
+    exception
+    when NO_DATA_FOUND then
+        rollback;
+        raise_application_error(-20000, 'Nie ma takiego przejazdu');
 end;
 /
 
