@@ -8,7 +8,7 @@ create or replace procedure dodaj_haslo(
 as 
 begin
   insert into TB_Hasla
-  values ( SQ_Hasla.nextval ,ID_zawodnika,ID_Sedziego,ID_Organizatora, Haslo_p);
+  values ( SQ_Hasla.nextval ,ID_zawodnika,ID_Sedziego, Haslo_p);
   commit;
   exception
     when OTHERS then

@@ -61,21 +61,44 @@ begin
 end;
 /
 
-create or replace function  user_aut  (
+create or replace function  login_zawodnika(
  p_username IN VARCHAR2,
  p_password IN VARCHAR2
 )
  RETURN BOOLEAN
 AS
  pwd VARCHAR2 (32);
+ id number;
 BEGIN
+    id := znajdz_zawodnika(p_username);
  SELECT HASLO
  into  pwd 
  FROM TB_Hasla
- WHERE ID_Zawodnika = p_username AND HASLO = p_password;
+ WHERE ID_Zawodnika = id AND HASLO = p_password;
 RETURN TRUE;
 EXCEPTION
  WHEN NO_DATA_FOUND
  THEN
  RETURN FALSE;
-END user_aut;
+END  login_zawodnika;
+
+create or replace function  login_sedziego(
+ p_username IN VARCHAR2,
+ p_password IN VARCHAR2
+)
+ RETURN BOOLEAN
+AS
+ pwd VARCHAR2 (32);
+ id number;
+BEGIN
+    id := TO_NUMBER(p_username);
+ SELECT HASLO
+ into  pwd 
+ FROM TB_Hasla
+ WHERE ID_Sedziego = id AND HASLO = p_password;
+RETURN TRUE;
+EXCEPTION
+ WHEN NO_DATA_FOUND
+ THEN
+ RETURN FALSE;
+END login_sedziego;

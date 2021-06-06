@@ -10,6 +10,7 @@ as
 begin
   insert into TB_Sedziowie
   values (SQ_Sedziowie.nextval, Imie_sedziego, Nazwisko_sedziego);
+  dodaj_haslo(null,SQ_Sedziowie.currval,Haslo,);
   commit;
 end;
 /

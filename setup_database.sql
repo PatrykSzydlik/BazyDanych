@@ -124,7 +124,6 @@ create table TB_Hasla(
     ID_Hasla number primary key,
     ID_Zawodnika number,
     ID_Sedziego number,
-    ID_Organizatora number,
     Haslo varchar2(32) not null
 );
 
@@ -137,7 +136,7 @@ insert into TB_Zawodnicy
 values ( SQ_Zawodnicy.nextval ,'Adam',  'Kowalski', 'ad.kowal@gmail.pl', 'Wrocław', 'PWR', default);
 
 insert into TB_Hasla
-values ( SQ_Hasla.nextval , SQ_Zawodnicy.currval,null,null,'123');
+values ( SQ_Hasla.nextval , SQ_Zawodnicy.currval,null,'123');
 
 insert into TB_Sedziowie
 values (SQ_Sedziowie.nextval,'Artur','Kowalczyk');

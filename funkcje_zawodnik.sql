@@ -19,7 +19,7 @@ begin
   insert into TB_Zawodnicy
   values ( SQ_Zawodnicy.nextval ,Imie_zawodnika, Nazwisko_zawodnika, Mail_zawodnika, Adres_zawodnika, Uczelnia_zawodnika, 0);
   commit;
-  dodaj_haslo(SQ_Zawodnicy.currval,null,null,Haslo);
+  dodaj_haslo(SQ_Zawodnicy.currval,null,Haslo);
   return (SQ_Zawodnicy.currval);
   exception
     when dup_val_on_index then
@@ -118,3 +118,19 @@ begin
 end;
 /
 
+create or replace function  znajdz_zawodnika(
+    Mail_zawodnika varchar2
+)return number
+as
+    id number;
+begin
+    select ID_Zawodnika
+    into id
+    from TB_Zawodnicy
+    where  Mail = Mail_zawodnika;
+    return id;
+    exception
+    when NO_DATA_FOUND then
+        raise_application_error(-20000, 'Nie ma takiego zawodnika');
+end;
+/
