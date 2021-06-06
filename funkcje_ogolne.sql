@@ -41,7 +41,7 @@ as
     i number;
     nazwa_r varchar2(40);
 begin
-    i := 1;
+    i := 0;
     select ID_Sesji
     into id_sesji_p
     from TB_Sesje
